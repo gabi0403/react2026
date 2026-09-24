@@ -1,30 +1,29 @@
-
 # REACT - Guia Rápido e Anotações
 
 **Unidade Curricular:** Desenvolvimento FrontEnd
 **Conteúdo:** Desenvolvimento de Frameworks - REACT
 
-## Semana 1 - Introução ao React e Ambiente de Desenvolvimento
+## Semana 1 - Introdução ao React e Ambiente de Desenvolvimento
 
 ### 1. O que é React?
 
 - Uma Biblioteca JavaScript para criação de interfaces de Usuário (UI)
-- Funciona de forma **declarativa**: você descreve o resultado esperado com base nos dados,e o React atualiza o navegador.
+- Funciona de forma **declarativa**: você descreve o resultado esperado com base nos dados, e o React atualiza o navegador.
 - Cria *SPAs* (Single Page Applications): atualiza partes da tela sem recarregar a página inteira.
 
 ### 2. React vs JavaScript Vanilla: DOM Tradicional vs Virtual DOM
 
-O DOM no JavaScript Tradicional é Imperativo: PRocura a tag, muda o componente e atualiza a página
+O DOM no JavaScript tradicional é imperativo: procura a tag, muda o componente e atualiza a página.
 
 React (Declarativo): UI=Componente(dados) -> Quando os dados mudam, o React atualiza o componente.
 
 ### 3. Comandos essenciais no terminal
 
 ```bash
-#Criar projeto com o VITE(framework react)
-npm create vite@latest nome-projeto --template
+# Criar projeto com o Vite (framework React)
+npm create vite@latest nome-projeto --template react
 
-#atualizar e instalar depêndencias do node_modules
+# Atualizar e instalar dependências do node_modules
 npm install
 
 # Iniciar o servidor local (http://localhost:5173)
@@ -32,18 +31,18 @@ npm run dev
 
 ```
 
-### 4. Sintaxe do primeiro componente JSX(permite escrever códigos parecidos com HTML diretamente dentro do arquivo de script)
+### 4. Sintaxe do primeiro componente JSX (permite escrever códigos parecidos com HTML diretamente dentro do arquivo de script)
 
 ```jsx
 //src/App.js
 //Componente Raiz da Aplicação
 function App(){
-    const sistema = "Meu site";
+    const sistema = "Meu Site";
 
     return(
         <main>
-        <h1>{sistema}</h1>
-        <p>Gerencie seus componentes em um só lugar</p>
+            <h1>{sistema}</h1>
+                    <p>Gerencie seus componentes em um só lugar</p>
         </main>
     );
 }
@@ -51,36 +50,35 @@ function App(){
 export default App;
 ```
 
-> Obs: o JSX exibe **uma única tag raiz** (ou fragmento `<> ... </>`) e nomes de componentes sempre começam com a letra **Maiúscula** (UpperCamelCase).
+> Obs: O JSX exibe **uma única tag raiz** (ou fragmento `<> ... </>`) e nomes de componentes sempre começam com a letra **Maiúscula** (UpperCamelCase).
 
 ---
 
-## Semana 2 - JSX, Componente, Props e Eventos
+## Semana 2 - JSX, Componentes, Props e Eventos
 
 ### 1. Responsabilidade Única (SOLID)
-- Quebrar a tela e componentes pequenos. Cada componente deve fazer apenas uma unica coisa bem feita:
-
+- Quebrar a tela em componentes pequenos. Cada componente deve fazer apenas uma única coisa bem feita:
 
 **Exemplo de componentes:**
 - `Header`: cuida do título e do cabeçalho da aplicação
 - `Footer`: cuida do rodapé da aplicação
 - `NavBar`: cuida da barra de navegação do site
 
-> Obs: o principio do SOLID estabelece que uma unidade de software deve ter apenas um motivo para mudar
+> Obs.: o princípio do SOLID estabelece que uma unidade de software deve ter apenas um motivo para mudar.
 
 ### 2. Props: passagem de dados e fluxo unidirecional
 
 **O que são Props?**
 
-Os props são argumentos  ou parâmetros das funções já que um componenete REACT é uma função JavaScript, ou seja, as props (abreviação de properties) permitem que o componente pai envie dados dinâmicamente para o componente filho, tornando-o customizavel e reutilizável.
+As props são argumentos ou parâmetros das funções, já que um componente React é uma função JavaScript. Ou seja, as props (abreviação de properties) permitem que o componente pai envie dados dinamicamente para o componente filho, tornando-o customizável e reutilizável.
 
 ### 3. Eventos e Comunicação via Callbacks
 
-React encapsulamento de eventos nativos em objetos,a diferença do react para o HTML é a sintaxe
-- no HTML :  `onclick="minhafuncao()`
+O React encapsula eventos nativos em objetos. A diferença do React para o HTML é a sintaxe:
+- no HTML: `onclick="minhaFuncao()"`
 - no React JSX : `onClick={minhaFuncao}`
 
-> funções em JavaScriot deve seguir o padrão lowerCamelCase de escrita. 
+> Funções em JavaScript devem seguir o padrão lowerCamelCase de escrita.
 
 ```mermaid
 flowchart LR
@@ -90,13 +88,13 @@ flowchart LR
     B --(Dispara a ação via CallBack)-->A
 ```
 
-### 4. Lista dinâmica com map() e a propriedades `key`
+### 4. Listas dinâmicas com `map()` e a propriedade `key`
 
 **Porque Arrays são estruturas padrão do FrontEnd?**
 
-Os dados chegam de banco de dados e apis no formato de coleção (json) 
+Os dados chegam de bancos de dados e APIs no formato de coleções (JSON).
 
-o método `.map()` percorre cada item de uma array e retorna um novo componente JSX
+O método `.map()` percorre cada item de um array e retorna um novo componente JSX.
 
 Exemplo:
 
@@ -112,11 +110,11 @@ tarefas.map((tarefa)=>(
 ))
 ```
 
-*Porque o React Exige o `key` no uso do `.map()`*s
+**Por que o React exige o `key` no uso do `.map()`?**
 
-o React quando renderiza uma lista precisa saber de forma inequívoca qual item específico foi adicionado, alterado ou removido. Se a chave for omitida, o react emite um aviso no console: `Warning: Each child in a list should have a unique "key" prop.`
+Quando o React renderiza uma lista, precisa saber de forma inequívoca qual item específico foi adicionado, alterado ou removido. Se a chave for omitida, o React emite um aviso no console: `Warning: Each child in a list should have a unique "key" prop.`
 
-> evitar o índice do array como chave `(key={index})`: índice do vetor não é fixo, use sempre uma chave única para os item da lista ( carimbo de data e hora, id único, ) 
+> Evite o índice do array como chave `(key={index})`: o índice do vetor não é fixo. Use sempre uma chave única para os itens da lista (carimbo de data e hora, ID único etc.).
 
 ### Componentes de Formulário Estático:
 
@@ -124,11 +122,11 @@ Criando o Arquivo `TarefaForm.jsx`
 
 ---
 
-## Semana 3 - Estado Formulário e CRUD em Memoria
+## Semana 3 - Estado, Formulário e CRUD em Memória
 
-**Tema:** transição de uma interface estática para uma aplicação reativa, trablho com o hook fundamental `useState`, construção de formulários com validação, Crud Completo, filtros e buscas textuais 
+**Tema:** transição de uma interface estática para uma aplicação reativa, trabalho com o hook fundamental `useState`, construção de formulários com validação, CRUD completo, filtros e buscas textuais.
 
-**Contextualização**: Na Semana 2, decomposição  de tela monolítica em componentes reutilizáveis, organização de fluxo dos props e captura de eventos
+**Contextualização**: na Semana 2, houve a decomposição de uma tela monolítica em componentes reutilizáveis, a organização do fluxo das props e a captura de eventos.
 
 ### Bloco 1 - O Conceito de Estado e o hook `useState`
 
@@ -139,7 +137,7 @@ Criando o Arquivo `TarefaForm.jsx`
 function Contador(){
     let contador = 0;
 
-    function incremento(){
+    function incrementar(){
         contador += 1;
         console.log("Contador no console", contador); // exibe o número
     }
@@ -147,16 +145,16 @@ function Contador(){
     return (
         <div>
             <p>Clique: {contador}</p>
-            <button type="button" onClick={incremento}>Somar<button>
+            <button type="button" onClick={incrementar}>Somar</button>
         </div>
     )
 }
 ```
 
-Obs:
-* JavaScript convencionais perdem suas variáveis locias o termino da execução
+Obs.:
+* Funções JavaScript convencionais perdem suas variáveis locais ao término da execução.
 * O React não monitora variáveis comuns. Ele não sabe que a variável mudou e, portanto, não tem motivo para redesenhar a tela
-* O estado (state) é a memoria do componente. Quando o estado é modificado por uma função, o React agenda ua nova execução da função do componente (re-renderização), atualizando o Virtual DOM e o navegador.
+* O estado (state) é a memória do componente. Quando o estado é modificado por uma função, o React agenda uma nova execução da função do componente (renderização novamente), atualizando o Virtual DOM e o navegador.
 
 **A Sintaxe do `useState`**
 
@@ -172,7 +170,7 @@ Obs:
 * `setContador`: a função despachante que atualiza o dado e notifica o React;
 * `useState(0)`: define o valor com o qual o componente nasce.
 
-**Chamando a Mudnaça de Estado**
+**Chamando a Mudança de Estado**
 
 o próximo valor sempre depende do valor anterior 
 
@@ -186,4 +184,99 @@ setContador(contador + 1);
 ```
 
 > Fazendo a Mudança no Aplicativo de Lista de Tarefas
-> react2026\lista-tarefas\src\App.jsx
+> `React\lista-tarefas\src\App.jsx`
+
+### Bloco 2 - Elevação de Estado (Lifting State Up)
+
+A comunicação entre os componentes: para que dois ou mais componentes no React compartilhem ou modifiquem dados, o estado deve ser elevado ao ancestral comum entre eles.
+
+```mermaid
+flowchart TB
+    A[App.jsx - Ancestral Comum - O Estado Deve Estar Aqui]
+    B[TarefaForm.jsx]
+    C[TarefaList.jsx]
+    D[TarefaItem.jsx]
+    E[TarefaAction.jsx]
+
+    A --> B
+    A --> C
+    C --> D
+    D --> E
+
+```
+Obs.:
+1. O Estado `tarefas`reside no App.jsx
+2. O App.jsx cria as funções de modificação (handleAddTarefa, handleMudarTarefa, handleDeletarTarefa);
+3. Os dados descem como props para quem precisa usá-los
+4. As funções descem como callbacks para quem precisa disparar a ação;
+
+### Bloco 3 - Formulários Controlados e Validação
+
+**Controlando Componentes (Controlled Components)**
+
+No HTML tradicional, os inputs guardam seu próprio texto internamente no DOM. No React, a única fonte de armazenamento deve ser o próprio React.
+
+Um input é controlado quando:
+1. Seu atributo `value` está amarrado a um estado do React
+2. Seu evento `onChange` atualiza esse mesmo estado a cada caractere digitado.
+
+Exemplo de uso:
+```jsx
+const [titulo, setTitulo] = useState("");
+
+<input
+    type="text"
+    value={titulo}
+    onChange={(e) => setTitulo(e.target.value)}
+/>
+```
+
+**Prevenindo o Recarregamento com `event.preventDefault()`**
+
+Evita o comportamento nativo da web, que é submeter formulários e recarregar a página quando formulários ou eventos forem enviados.
+
+```jsx
+function handleSubmit(event){
+    event.preventDefault(); //impede o carregamento da página
+    //processamento dos dados
+}
+```
+
+**Construir Formulário na Atividade Lista de Tarefas**
+`React\lista-tarefas\src\components\TarefaForm.jsx`
+
+---
+
+### Bloco 4 - Operações CRUD na Memória
+
+**Imutabilidade no React**
+
+Para que o React detecte uma alteração em um objeto ou array, devemos criar uma nova cópia com a alteração desejada.
+
+Métodos como `.push()`, `.unshift()` e `.pop()` não devem ser usados para modificar arrays no React, pois o React compara o objeto na memória, identifica que não houve mudança e conclui que não precisa fazer a renderização. A mudança só ocorre se for chamado o `useState` (mudança de estado).
+
+**Operações de Imutabilidade no React**
+
+* **Inserir**:
+
+    `[novoItem, ...array]`
+    // A mudança é feita criando um novo array com o novo item e espalhando os itens antigos.
+
+* **Remover**:
+
+    `array.filter(item => item.id !== id)`
+    // A mudança é feita criando um novo array, filtrando os itens antigos e removendo o item desejado.
+
+* **Atualizar**:
+
+    `array.map(item => item.id === id ? {...item, completed: true} : item)`
+    // A mudança é feita criando um novo array, mapeando os itens antigos e atualizando o item desejado.
+    
+
+**Adicionando as quatro operações do CRUD no App.jsx**
+`React\lista-tarefas\src\App.jsx`
+
+--
+
+
+

@@ -2,7 +2,7 @@ function Header() {
     return(
         <header className="app-header">
             <h1>Lista de Tarefas</h1>
-            <p>Gerenciador de lista de tarefas</p>
+            <p>Gerenciador de Lista de Tarefas</p>
         </header>
     );
 }
