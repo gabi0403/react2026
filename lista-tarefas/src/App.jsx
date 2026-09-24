@@ -5,10 +5,25 @@ import TarefaForm from "./components/TarefaForm";
 import TarefaItem from "./components/TarefaItem";
 import TarefaList from "./components/TarefaList";
 import { tarefaInicial } from "./data/tarefaMock";
+import TarefaFilters from "./components/TarefaFilters";
 
 function App(){
 
   const [tarefas, setTarefas] = useState(tarefaInicial);
+
+  //estado para os botões
+  const [filter, setFilter] = useState("todas");
+  // const [termoBusca, setTermoBusca] = useState("");
+
+
+  //Criando o Cálculo/lógica de Filtragem
+
+  const visibilidadeTarefa = tarefa.filter((tarefa)=>{
+    const filtragem = filter === "todas" ? true :
+      filter === "completa" ? tarefas.completa : !tarefas.completa;
+
+    return filtragem;
+  })
 
   function handleMudar(id){
     setTarefas((prevTarefas)=> prevTarefas.map((tarefa)=> tarefa.id === id ? {...tarefa, completa: !tarefa.completa }: tarefa));
@@ -37,7 +52,8 @@ function App(){
   return(
     <main className="app-container">
       <Header/>
-      <TarefaForm/>
+      <TarefaForm aoAddTarefa={handleAdicionar}/>
+      <TarefaFilters currentFilter={filter} aoFiltrar={setFilter} />
       <p className="tarefa-contador">Tarefas Cadastradas: {tarefas.length}</p>
       <TarefaList tarefas={tarefas} />
     </main>

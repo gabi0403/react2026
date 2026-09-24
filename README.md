@@ -15,7 +15,7 @@
 
 O DOM no JavaScript tradicional é imperativo: procura a tag, muda o componente e atualiza a página.
 
-React (Declarativo): UI=Componente(dados) -> Quando os dados mudam, o React atualiza o componente.
+React (declarativo): UI = Componente(dados) -> quando os dados mudam, o React atualiza o componente.
 
 ### 3. Comandos essenciais no terminal
 
@@ -35,14 +35,14 @@ npm run dev
 
 ```jsx
 //src/App.js
-//Componente Raiz da Aplicação
+// Componente raiz da aplicação
 function App(){
     const sistema = "Meu Site";
 
     return(
         <main>
             <h1>{sistema}</h1>
-                    <p>Gerencie seus componentes em um só lugar</p>
+            <p>Gerencie seus componentes em um só lugar</p>
         </main>
     );
 }
@@ -75,7 +75,7 @@ As props são argumentos ou parâmetros das funções, já que um componente Rea
 ### 3. Eventos e Comunicação via Callbacks
 
 O React encapsula eventos nativos em objetos. A diferença do React para o HTML é a sintaxe:
-- no HTML: `onclick="minhaFuncao()"`
+- no HTML :  `onclick="minhafuncao()`
 - no React JSX : `onClick={minhaFuncao}`
 
 > Funções em JavaScript devem seguir o padrão lowerCamelCase de escrita.
@@ -88,7 +88,7 @@ flowchart LR
     B --(Dispara a ação via CallBack)-->A
 ```
 
-### 4. Listas dinâmicas com `map()` e a propriedade `key`
+### 4. Listas dinâmicas com map() e a propriedade `key`
 
 **Porque Arrays são estruturas padrão do FrontEnd?**
 
@@ -110,13 +110,13 @@ tarefas.map((tarefa)=>(
 ))
 ```
 
-**Por que o React exige o `key` no uso do `.map()`?**
+**Por que o React exige a `key` no uso do `.map()`?**
 
 Quando o React renderiza uma lista, precisa saber de forma inequívoca qual item específico foi adicionado, alterado ou removido. Se a chave for omitida, o React emite um aviso no console: `Warning: Each child in a list should have a unique "key" prop.`
 
-> Evite o índice do array como chave `(key={index})`: o índice do vetor não é fixo. Use sempre uma chave única para os itens da lista (carimbo de data e hora, ID único etc.).
+> Evite o índice do array como chave `(key={index})`: o índice do vetor não é fixo. Use sempre uma chave única para os itens da lista (carimbo de data e hora, ID único).
 
-### Componentes de Formulário Estático:
+### Componentes de Formulário Estático
 
 Criando o Arquivo `TarefaForm.jsx`
 
@@ -137,7 +137,7 @@ Criando o Arquivo `TarefaForm.jsx`
 function Contador(){
     let contador = 0;
 
-    function incrementar(){
+    function incremento(){
         contador += 1;
         console.log("Contador no console", contador); // exibe o número
     }
@@ -145,14 +145,14 @@ function Contador(){
     return (
         <div>
             <p>Clique: {contador}</p>
-            <button type="button" onClick={incrementar}>Somar</button>
+            <button type="button" onClick={incremento}>Somar<button>
         </div>
     )
 }
 ```
 
-Obs.:
-* Funções JavaScript convencionais perdem suas variáveis locais ao término da execução.
+Obs:
+* Variáveis convencionais do JavaScript perdem seus valores ao término da execução.
 * O React não monitora variáveis comuns. Ele não sabe que a variável mudou e, portanto, não tem motivo para redesenhar a tela
 * O estado (state) é a memória do componente. Quando o estado é modificado por uma função, o React agenda uma nova execução da função do componente (renderização novamente), atualizando o Virtual DOM e o navegador.
 
@@ -184,7 +184,7 @@ setContador(contador + 1);
 ```
 
 > Fazendo a Mudança no Aplicativo de Lista de Tarefas
-> `React\lista-tarefas\src\App.jsx`
+> React\lista-tarefas\src\App.jsx
 
 ### Bloco 2 - Elevação de Estado (Lifting State Up)
 
@@ -218,7 +218,7 @@ No HTML tradicional, os inputs guardam seu próprio texto internamente no DOM. N
 
 Um input é controlado quando:
 1. Seu atributo `value` está amarrado a um estado do React
-2. Seu evento `onChange` atualiza esse mesmo estado a cada caractere digitado.
+2. Seu Evento `onChange` atualiza esse mesmo estado a cada caracter digitado
 
 Exemplo de uso:
 ```jsx
@@ -233,7 +233,7 @@ const [titulo, setTitulo] = useState("");
 
 **Prevenindo o Recarregamento com `event.preventDefault()`**
 
-Evita o comportamento nativo da web, que é submeter formulários e recarregar a página quando formulários ou eventos forem enviados.
+Evita o comportamento nativo da web, que é submeter formulários e recarregar a página quando eles são enviados.
 
 ```jsx
 function handleSubmit(event){
@@ -243,7 +243,7 @@ function handleSubmit(event){
 ```
 
 **Construir Formulário na Atividade Lista de Tarefas**
-`React\lista-tarefas\src\components\TarefaForm.jsx`
+React\lista-tarefas\src\components\TarefaForm.jsx
 
 ---
 
@@ -253,30 +253,43 @@ function handleSubmit(event){
 
 Para que o React detecte uma alteração em um objeto ou array, devemos criar uma nova cópia com a alteração desejada.
 
-Métodos como `.push()`, `.unshift()` e `.pop()` não devem ser usados para modificar arrays no React, pois o React compara o objeto na memória, identifica que não houve mudança e conclui que não precisa fazer a renderização. A mudança só ocorre se for chamado o `useState` (mudança de estado).
+Métodos como `.push()`, `.unshift()` e `.pop()` não devem ser usados para modificar arrays no React, pois o React compara o objeto na memória e pode identificar que não houve mudança. A alteração só ocorre quando chamamos o `useState` (mudança de estado).
 
-**Operações de Imutabilidade no React**
+**Operações de Imutabilidade no REACT**
 
 * **Inserir**:
 
     `[novoItem, ...array]`
-    // A mudança é feita criando um novo array com o novo item e espalhando os itens antigos.
+    // a mudança é feita criando um novo array com o novo item e espalhando os itens antigos
 
 * **Remover**:
 
     `array.filter(item => item.id !== id)`
-    // A mudança é feita criando um novo array, filtrando os itens antigos e removendo o item desejado.
+    // a mudança é feita criando um novo array filtrando os itens antigos e removendo o item desejado
 
 * **Atualizar**:
 
     `array.map(item => item.id === id ? {...item, completed: true} : item)`
-    // A mudança é feita criando um novo array, mapeando os itens antigos e atualizando o item desejado.
+    // a mudança é feita criando um novo array mapeando os itens antigos e atualizando o item desejado
     
 
-**Adicionando as quatro operações do CRUD no App.jsx**
-`React\lista-tarefas\src\App.jsx`
+**Adicionando as 4 operações do CRUD no App.jsx**
+React\lista-tarefas\src\App.jsx
 
---
+---
 
+### Bloco 5 - Filtros e Buscas
+
+**Erro ao criar estados duplicados**
+
+Muitos programadores pensam em duplicar listas no React; porém, isso é um erro. Se você apaga uma tarefa em uma lista, deve lembrar de apagá-la na outra também. Se esquecer de fazer isso, os dados ficam dessincronizados e podem gerar problemas no código.
+
+Para resolver esse problema, se um dado pode ser calculado a partir de um estado já existente, use esse cálculo ou essa lógica. **Não crie um novo estado para ele; ou seja, não duplique!**
+
+**Vamos criar um componente para a filtragem das tarefas em nossa aplicação.**
+Digite o comando no terminal:
+```bash
+type nul > src/components/TarefaFilters.jsx
+```
 
 

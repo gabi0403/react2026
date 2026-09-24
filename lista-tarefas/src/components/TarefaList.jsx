@@ -4,7 +4,7 @@ import TarefaItem from "./TarefaItem";
 
 function TarefaList({tarefas=[], aoMudarTarefa, aoRemoverTarefa}){
     if(tarefas.length===0){
-        return <p className="empty">Nenhuma Tarefa encontradfa</p>
+        return <p className="empty">Nenhuma Tarefa encontrada</p>
     }
 
     return(
